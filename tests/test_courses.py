@@ -24,30 +24,27 @@ def test_create_course(
 ) -> None:
     create_course_page_with_state.visit_create_course_page()
 
-    create_course_page_with_state.check_visible_create_course_title()
-    create_course_page_with_state.check_disabled_create_course_button()
+    create_course_page_with_state.create_course_toolbar_view.check_visible()
 
     create_course_page_with_state.image_upload_widget.check_visible(is_image_uploaded=False)
 
-    create_course_page_with_state.check_visible_create_course_form(
-        title='', estimated_time='', description='', max_score='0', min_score='0'
-    )
+    create_course_page_with_state.create_course_form.check_visible()
 
-    create_course_page_with_state.check_visible_exercises_title()
-    create_course_page_with_state.check_visible_create_exercise_button()
+    create_course_page_with_state.create_course_exercises_toolbar_view.check_visible()
+
     create_course_page_with_state.check_visible_exercises_empty_view()
 
     create_course_page_with_state.image_upload_widget.upload_preview_image('./testdata/files/image.png')
     create_course_page_with_state.image_upload_widget.check_visible(is_image_uploaded=True)
 
-    create_course_page_with_state.fill_create_course_form(
+    create_course_page_with_state.create_course_form.fill(
         title='Playwright',
         estimated_time='2 weeks',
         description='Playwright',
         max_score='100',
         min_score='10',
     )
-    create_course_page_with_state.click_create_course_button()
+    create_course_page_with_state.create_course_toolbar_view.click_create_button()
 
     courses_list_page_with_state.toolbar_view.check_visible()
     courses_list_page_with_state.course_view.check_visible(
