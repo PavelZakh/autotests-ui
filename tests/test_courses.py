@@ -12,8 +12,7 @@ def test_empty_courses_list(courses_list_page_with_state: CoursesListPage) -> No
     courses_list_page_with_state.sidebar.check_visible()
     courses_list_page_with_state.navbar.check_visible("username")
 
-    courses_list_page_with_state.check_visible_courses_title()
-    courses_list_page_with_state.check_visible_create_course_button()
+    courses_list_page_with_state.toolbar_view.check_visible()
 
     courses_list_page_with_state.check_visible_empty_view()
 
@@ -28,8 +27,7 @@ def test_create_course(
     create_course_page_with_state.check_visible_create_course_title()
     create_course_page_with_state.check_disabled_create_course_button()
 
-    create_course_page_with_state.check_visible_image_preview_empty_view()
-    create_course_page_with_state.check_visible_image_upload_view(is_image_uploaded=False)
+    create_course_page_with_state.image_upload_widget.check_visible(is_image_uploaded=False)
 
     create_course_page_with_state.check_visible_create_course_form(
         title='', estimated_time='', description='', max_score='0', min_score='0'
@@ -39,8 +37,8 @@ def test_create_course(
     create_course_page_with_state.check_visible_create_exercise_button()
     create_course_page_with_state.check_visible_exercises_empty_view()
 
-    create_course_page_with_state.upload_preview_image(file='./testdata/files/image.png')
-    create_course_page_with_state.check_visible_image_upload_view(is_image_uploaded=True)
+    create_course_page_with_state.image_upload_widget.upload_preview_image('./testdata/files/image.png')
+    create_course_page_with_state.image_upload_widget.check_visible(is_image_uploaded=True)
 
     create_course_page_with_state.fill_create_course_form(
         title='Playwright',
@@ -51,8 +49,7 @@ def test_create_course(
     )
     create_course_page_with_state.click_create_course_button()
 
-    courses_list_page_with_state.check_visible_courses_title()
-    courses_list_page_with_state.check_visible_create_course_button()
-    courses_list_page_with_state.check_visible_course_card(
+    courses_list_page_with_state.toolbar_view.check_visible()
+    courses_list_page_with_state.course_view.check_visible(
         index=0, title='Playwright', max_score='100', min_score='10', estimated_time='2 weeks'
     )
