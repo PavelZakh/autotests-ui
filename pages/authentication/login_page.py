@@ -8,13 +8,12 @@ from components.authentication.login_form_component import LoginFormComponent
 from elements.button import Button
 from elements.link import Link
 from elements.text import Text
+from tools.routes import AppRoute
 
 
 class LoginPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
-
-        self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login'
 
         self.login_form = LoginFormComponent(page)
 
@@ -25,7 +24,7 @@ class LoginPage(BasePage):
         )
 
     def visit_login_page(self) -> None:
-        self.visit(self.url)
+        self.visit(AppRoute.LOGIN)
 
     def click_login_button(self) -> None:
         self.login_button.click()

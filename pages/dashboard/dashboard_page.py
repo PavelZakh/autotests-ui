@@ -5,12 +5,12 @@ from components.navigation.navbar_component import NavbarComponent
 from components.navigation.sidebar_component import SidebarComponent
 from components.dashboard.dashboard_toolbar_view_component import DashboardToolbarViewComponent
 from components.charts.chart_view_component import ChartViewComponent, ChartIdentifiers, ChartTypes
+from tools.routes import AppRoute
+
 
 class DashboardPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
-
-        self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard'
 
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
@@ -22,4 +22,4 @@ class DashboardPage(BasePage):
         self.courses_chart_view = ChartViewComponent(page, ChartIdentifiers.COURSES, ChartTypes.PIE)
 
     def visit_dashboard_page(self) -> None:
-        self.visit(self.url)
+        self.visit(AppRoute.DASHBOARD)

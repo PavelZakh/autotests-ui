@@ -9,6 +9,7 @@ from tools.allure.tags import AllureTag
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
+from config import settings
 
 
 @pytest.mark.regression
@@ -48,19 +49,26 @@ class TestAuthorization:
             registration_page: RegistrationPage
     ):
         registration_page.visit_registration_page()
-        registration_page.registration_form.fill(email="user.name@gmail.com", username="username", password="password")
+        registration_page.registration_form.fill(
+            email=settings.test_user.email,
+            username=settings.test_user.username,
+            password=settings.test_user.password,
+        )
         registration_page.click_registration_button()
 
         dashboard_page.dashboard_toolbar_view.check_visible()
-        dashboard_page.navbar.check_visible("username")
+        dashboard_page.navbar.check_visible(settings.test_user.username)
         dashboard_page.sidebar.check_visible()
         dashboard_page.sidebar.click_logout()
 
-        login_page.login_form.fill(email="user.name@gmail.com", password="password")
+        login_page.login_form.fill(
+            email=settings.test_user.email,
+            password=settings.test_user.password,
+        )
         login_page.click_login_button()
 
         dashboard_page.dashboard_toolbar_view.check_visible()
-        dashboard_page.navbar.check_visible("username")
+        dashboard_page.navbar.check_visible(settings.test_user.username)
         dashboard_page.sidebar.check_visible()
 
     @allure.tag(AllureTag.NAVIGATION)

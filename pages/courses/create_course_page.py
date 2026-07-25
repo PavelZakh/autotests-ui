@@ -9,13 +9,12 @@ from components.views.image_upload_widget_component import ImageUploadWidgetComp
 from components.views.empty_view_component import EmptyViewComponent
 from components.navigation.navbar_component import NavbarComponent
 from components.navigation.sidebar_component import SidebarComponent
+from tools.routes import AppRoute
 
 
 class CreateCoursePage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
-
-        self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create'
 
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
@@ -29,7 +28,7 @@ class CreateCoursePage(BasePage):
 
 
     def visit_create_course_page(self) -> None:
-        self.visit(self.url)
+        self.visit(AppRoute.COURSES_CREATE)
 
     def check_visible_exercises_empty_view(self) -> None:
         self.exercises_empty_view.check_visible(

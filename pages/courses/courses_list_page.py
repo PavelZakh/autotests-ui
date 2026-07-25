@@ -6,13 +6,12 @@ from components.views.empty_view_component import EmptyViewComponent
 from components.navigation.navbar_component import NavbarComponent
 from components.navigation.sidebar_component import SidebarComponent
 from components.courses.course_view_component import CourseViewComponent
+from tools.routes import AppRoute
 
 
 class CoursesListPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
-
-        self.url = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses'
 
         self.navbar = NavbarComponent(page)
         self.sidebar = SidebarComponent(page)
@@ -22,7 +21,7 @@ class CoursesListPage(BasePage):
 
 
     def visit_courses_list_page(self) -> None:
-        self.visit(self.url)
+        self.visit(AppRoute.COURSES)
 
     def check_visible_empty_view(self) -> None:
         self.empty_view.check_visible(

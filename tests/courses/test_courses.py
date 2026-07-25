@@ -8,6 +8,7 @@ from tools.allure.tags import AllureTag
 from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
+from config import settings
 
 
 @pytest.mark.courses
@@ -49,7 +50,7 @@ class TestCourses:
 
         create_course_page_with_state.check_visible_exercises_empty_view()
 
-        create_course_page_with_state.image_upload_widget.upload_preview_image('./testdata/files/image.png')
+        create_course_page_with_state.image_upload_widget.upload_preview_image(settings.test_data.image_png_file)
         create_course_page_with_state.image_upload_widget.check_visible(is_image_uploaded=True)
 
         create_course_page_with_state.create_course_form.fill(
@@ -81,7 +82,7 @@ class TestCourses:
             min_score='10',
         )
 
-        create_course_page_with_state.image_upload_widget.upload_preview_image('./testdata/files/image.png')
+        create_course_page_with_state.image_upload_widget.upload_preview_image(settings.test_data.image_png_file)
         create_course_page_with_state.image_upload_widget.check_visible(is_image_uploaded=True)
 
         create_course_page_with_state.create_course_toolbar_view.click_create_button()
