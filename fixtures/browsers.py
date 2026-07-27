@@ -7,6 +7,7 @@ from playwright.sync_api import Playwright, Page
 from pages.authentication.registration_page import RegistrationPage
 from tools.playwright.pages import initialize_playwright_page
 from config import settings
+from tools.playwright.mocks import mock_static_resources
 
 
 @pytest.fixture(params=settings.browsers)
@@ -19,6 +20,7 @@ def initialize_browser_state(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=settings.headless)
     context = browser.new_context(base_url=settings.get_base_url())
     page = context.new_page()
+    mock_static_resources(page)
 
     registration_page = RegistrationPage(page=page)
     registration_page.visit_registration_page()
