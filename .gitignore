@@ -1,5 +1,18 @@
-browser-state.json
-allure-results/
-tracing/
-videos/
+# pycharm
 .idea/
+
+# python
+.venv
+.env
+venv/
+__pycache__/
+
+# allure
+allure-results/
+allure-report/
+
+# testing artifacts
+*.html
+*.json
+videos/
+tracing/
