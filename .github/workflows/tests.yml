@@ -27,11 +27,11 @@ jobs:
           pip install -r requirements.txt
           playwright install --with-deps
 
-      - name: Run Playwright tests with pytest and generate Allure results
+      - name: Run Playwright tests with pytest and generate allure results
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses 2
 
-      - name: Upload Allure Results
+      - name: Upload allure results
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-artifact
@@ -43,13 +43,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download Allure Results
+      - name: Download allure results
         uses: actions/download-artifact@v4
         with:
           name: allure-results-artifact
           path: allure-results/
 
-      - name: Get Allure history
+      - name: Get allure history
         uses: actions/checkout@v7
         if: always()
         continue-on-error: true
@@ -57,7 +57,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Generates Allure Report with history
+      - name: Generates allure report with history
         uses: simple-elf/allure-report-action@v1.15
         if: always()
         id: allure-report
