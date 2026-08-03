@@ -43,9 +43,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v7
-
       - name: Download Allure Results
         uses: actions/download-artifact@v4
         with:
